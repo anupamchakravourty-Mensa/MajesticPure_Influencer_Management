@@ -6,738 +6,166 @@
 <title>Majestic Pure × BRND.ME — Influencer Gifting</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ── TOKENS ───────────────────────────────────────── */
-:root {
-  --plum:     #2D1B4E;
-  --violet:   #4A2D7A;
-  --lavender: #9B7FBD;
-  --mist:     #E8E0F0;
-  --petal:    #F3EEF8;
-  --cream:    #FAF8FC;
-  --gold:     #C9A84C;
-  --text:     #2C2433;
-  --muted:    #7A6E85;
-  --white:    #FFFFFF;
-  --border:   #DDD5E8;
-  --success:  #4A7C59;
-  --r:        8px;
-}
-
-
-/* ── TOUCH OPTIMISATIONS ──────────────────────────── */
-* { -webkit-tap-highlight-color: transparent; }
-button, a { touch-action: manipulation; }
-input, textarea, select { font-size: 16px !important; } /* Prevents iOS zoom on focus */
-body { -webkit-text-size-adjust: 100%; }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
-  color: var(--text);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── ANNOUNCEMENT BAR ─────────────────────────────── */
-.announce {
-  background: var(--plum);
-  color: rgba(255,255,255,0.75);
-  text-align: center;
-  padding: 8px 16px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.announce span { color: var(--gold); }
-
-/* ── HEADER ──────────────────────────────────────── */
-header {
-  background: rgba(250,248,252,0.95);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 0 32px;
-  backdrop-filter: blur(12px);
-}
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 68px;
-}
-.brand-block { display: flex; flex-direction: column; }
-.brand-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 500;
-  color: var(--plum);
-  letter-spacing: 1px;
-  line-height: 1;
-}
-.brand-sub {
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-top: 3px;
-}
-.brand-sub span { color: var(--gold); font-weight: 600; }
-.cart-btn {
-  background: var(--plum);
-  color: var(--white);
-  border: none;
-  padding: 9px 20px;
-  border-radius: var(--r);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background 0.2s;
-}
-.cart-btn:hover { background: var(--violet); }
-.cart-count {
-  background: var(--gold);
-  color: var(--plum);
-  font-size: 10px;
-  font-weight: 700;
-  width: 18px; height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ── HERO ─────────────────────────────────────────── */
-.hero {
-  background: var(--plum);
-  position: relative;
-  overflow: hidden;
-  padding: 80px 32px;
-  text-align: center;
-}
-.hero-bg {
-  position: absolute; inset: 0;
-  background-image:
-    radial-gradient(ellipse 70% 60% at 15% 50%, rgba(155,127,189,0.2) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 70% at 85% 30%, rgba(201,168,76,0.1) 0%, transparent 60%);
-}
-/* Decorative botanical SVG circles */
-.hero-deco {
-  position: absolute; inset: 0;
-  overflow: hidden;
-  opacity: 0.06;
-}
-.hero-deco svg { position: absolute; }
-.hero-content { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
-.hero-eyebrow {
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 500;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-.hero-eyebrow::before,
-.hero-eyebrow::after {
-  content: '';
-  display: block;
-  width: 32px; height: 1px;
-  background: rgba(201,168,76,0.4);
-}
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(44px, 7vw, 72px);
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.15;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-.hero-title em { font-style: italic; color: var(--gold); }
-.hero-tagline {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 2px;
-  margin-bottom: 24px;
-}
-.hero-desc {
-  font-size: 14px;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.8;
-  margin-bottom: 36px;
-  font-weight: 300;
-  max-width: 480px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.hero-pills {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.hero-pill {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.7);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 11px;
-  letter-spacing: 0.5px;
-}
-
-/* ── CATALOG ─────────────────────────────────────── */
-.catalog-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 52px 32px;
-}
-.section-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 34px;
-  font-weight: 400;
-  color: var(--plum);
-}
-.section-title span { color: var(--lavender); font-style: italic; }
-.catalog-count { font-size: 13px; color: var(--muted); }
-
-/* Filter tabs */
-.filter-bar { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
-.filter-btn {
-  padding: 7px 16px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: var(--white);
-  color: var(--muted);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 0.3px;
-}
-.filter-btn:hover { border-color: var(--lavender); color: var(--violet); }
-.filter-btn.active { background: var(--plum); border-color: var(--plum); color: var(--white); }
-
-/* Grid */
-.catalog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-/* Product Card */
-.product-card {
-  background: var(--white);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: transform 0.22s, box-shadow 0.22s;
-}
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(45,27,78,0.1);
-}
-.card-img-wrap {
-  position: relative;
-  background: var(--petal);
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.card-img-wrap img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.35s;
-}
-.product-card:hover .card-img-wrap img { transform: scale(1.04); }
-.card-img-placeholder { font-size: 56px; opacity: 0.25; }
-.card-badge {
-  position: absolute;
-  top: 10px; left: 10px;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-.badge-bestseller { background: var(--gold); color: var(--plum); }
-.badge-outofstock { background: #e8e8e8; color: #999; }
-
-.card-body { padding: 14px 16px 16px; }
-.card-category {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--lavender);
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-.card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--plum);
-  line-height: 1.35;
-  margin-bottom: 4px;
-}
-.card-volume {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--lavender);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.card-status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  margin-bottom: 10px;
-}
-.status-dot { width: 7px; height: 7px; border-radius: 50%; }
-.status-dot.in { background: var(--success); }
-.status-dot.out { background: #ccc; }
-.card-action {
-  width: 100%;
-  padding: 9px;
-  background: var(--plum);
-  color: var(--white);
-  border: none;
-  border-radius: var(--r);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-  letter-spacing: 0.3px;
-}
-.card-action:hover { background: var(--violet); }
-.card-action.out-btn { background: #f0f0f0; color: #aaa; cursor: not-allowed; }
-
-/* Loading */
-.loading-state { text-align: center; padding: 80px 20px; color: var(--muted); }
-.loading-dots span {
-  display: inline-block;
-  width: 8px; height: 8px;
-  background: var(--lavender);
-  border-radius: 50%;
-  margin: 0 3px;
-  animation: bounce 1.2s infinite;
-}
-.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes bounce {
-  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
-  40% { transform: translateY(-8px); opacity: 1; }
-}
-
-/* ── CART SIDEBAR ─────────────────────────────────── */
-.cart-overlay {
-  position: fixed; inset: 0;
-  background: rgba(45,27,78,0.4);
-  z-index: 200;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.25s;
-}
-.cart-overlay.open { opacity: 1; pointer-events: all; }
-.cart-drawer {
-  position: fixed;
-  top: 0; right: 0;
-  width: 380px; max-width: 95vw;
-  height: 100vh;
-  background: var(--white);
-  z-index: 201;
-  transform: translateX(100%);
-  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-  display: flex; flex-direction: column;
-}
-.cart-drawer.open { transform: translateX(0); }
-.cart-head {
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.cart-head-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 500; color: var(--plum);
-}
-.cart-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--muted); }
-.cart-items { flex: 1; overflow-y: auto; padding: 16px 24px; }
-.cart-empty-msg { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
-.cart-item {
-  display: flex; gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: flex-start;
-}
-.cart-item-img {
-  width: 60px; height: 60px;
-  border-radius: var(--r);
-  background: var(--petal);
-  object-fit: cover; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; overflow: hidden;
-}
-.cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
-.cart-item-info { flex: 1; }
-.cart-item-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 15px; font-weight: 500; color: var(--plum); line-height: 1.3;
-}
-.cart-item-category { font-size: 11px; color: var(--lavender); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.8px; }
-.cart-item-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; }
-.cart-item-remove:hover { color: #c0392b; }
-.cart-footer { padding: 16px 24px; border-top: 1px solid var(--border); }
-.cart-summary { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
-.cart-checkout-btn {
-  width: 100%; padding: 13px;
-  background: var(--plum); color: var(--white);
-  border: none; border-radius: var(--r);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px; font-weight: 600; cursor: pointer;
-  transition: background 0.2s;
-}
-.cart-checkout-btn:hover { background: var(--violet); }
-.cart-checkout-btn:disabled { background: #ccc; cursor: not-allowed; }
-
-/* ── PRODUCT MODAL ────────────────────────────────── */
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(45,27,78,0.5);
-  z-index: 300;
-  display: flex; align-items: center; justify-content: center;
-  padding: 20px;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.2s;
-}
-.modal-overlay.open { opacity: 1; pointer-events: all; }
-.modal {
-  background: var(--white);
-  border-radius: 14px;
-  max-width: 520px; width: 100%;
-  max-height: 90vh; overflow-y: auto;
-  transform: translateY(16px);
-  transition: transform 0.25s;
-}
-.modal-overlay.open .modal { transform: translateY(0); }
-.modal-img {
-  width: 100%; height: 260px;
-  background: var(--petal);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 80px; overflow: hidden;
-  border-radius: 14px 14px 0 0;
-}
-.modal-img img { width: 100%; height: 100%; object-fit: cover; }
-.modal-body { padding: 24px; }
-.modal-category { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--lavender); font-weight: 500; margin-bottom: 6px; }
-.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; color: var(--plum); line-height: 1.3; margin-bottom: 6px; }
-.modal-asin { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
-.modal-volume {
-  display: inline-block;
-  background: var(--mist);
-  color: var(--lavender);
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 1px; text-transform: uppercase;
-  padding: 3px 10px; border-radius: 12px;
-  margin-bottom: 16px;
-}
-.modal-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-.modal-stock-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 12px; border-radius: 20px;
-  font-size: 12px; font-weight: 500; margin-bottom: 20px;
-}
-.modal-stock-badge.in { background: #E8F5E9; color: var(--success); }
-.modal-stock-badge.out { background: #f5f5f5; color: #aaa; }
-.modal-actions { display: flex; gap: 10px; margin-top: 20px; }
-.modal-add-btn {
-  flex: 1; padding: 12px;
-  background: var(--plum); color: var(--white);
-  border: none; border-radius: var(--r);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px; font-weight: 600; cursor: pointer;
-  transition: background 0.2s;
-}
-.modal-add-btn:hover { background: var(--violet); }
-.modal-add-btn:disabled { background: #ccc; cursor: not-allowed; }
-.modal-close-btn {
-  padding: 12px 20px; background: none;
-  color: var(--muted); border: 1px solid var(--border);
-  border-radius: var(--r); font-family: 'DM Sans', sans-serif;
-  font-size: 13px; cursor: pointer; transition: all 0.2s;
-}
-.modal-close-btn:hover { border-color: var(--lavender); color: var(--violet); }
-
-/* ── ORDER FORM ───────────────────────────────────── */
-.order-overlay {
-  position: fixed; inset: 0;
-  background: rgba(45,27,78,0.55);
-  z-index: 400;
-  display: flex; align-items: center; justify-content: center;
-  padding: 20px;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.2s;
-}
-.order-overlay.open { opacity: 1; pointer-events: all; }
-.order-modal {
-  background: var(--white); border-radius: 14px;
-  max-width: 480px; width: 100%;
-  max-height: 90vh; overflow-y: auto;
-  transform: translateY(16px); transition: transform 0.25s;
-}
-.order-overlay.open .order-modal { transform: translateY(0); }
-.order-head {
-  background: var(--plum);
-  padding: 20px 24px;
-  border-radius: 14px 14px 0 0;
-}
-.order-head-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 400; color: var(--white);
-}
-.order-head-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 3px; }
-.order-body { padding: 24px; }
-.order-summary {
-  background: var(--petal); border-radius: var(--r);
-  padding: 12px 14px; margin-bottom: 20px;
-}
-.order-summary-title { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-.order-summary-item { font-size: 13px; color: var(--plum); padding: 3px 0; display: flex; align-items: center; gap: 6px; }
-.order-summary-item::before { content: '✦'; font-size: 9px; color: var(--lavender); }
-.form-group { margin-bottom: 16px; }
-.form-label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-.form-input, .form-textarea {
-  width: 100%; padding: 11px 14px;
-  border: 1px solid var(--border); border-radius: var(--r);
-  font-family: 'DM Sans', sans-serif; font-size: 14px;
-  color: var(--text); background: var(--white); outline: none;
-  transition: border-color 0.15s;
-}
-.form-input:focus, .form-textarea:focus { border-color: var(--lavender); }
-.form-textarea { resize: vertical; min-height: 90px; }
-.form-submit {
-  width: 100%; padding: 13px;
-  background: var(--plum); color: var(--white);
-  border: none; border-radius: var(--r);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px; font-weight: 600; cursor: pointer;
-  transition: background 0.2s; margin-top: 4px;
-}
-.form-submit:hover { background: var(--violet); }
-.form-cancel {
-  width: 100%; padding: 10px; background: none;
-  color: var(--muted); border: none;
-  font-family: 'DM Sans', sans-serif; font-size: 13px;
-  cursor: pointer; margin-top: 8px; text-decoration: underline;
-}
-.brndme-tag { text-align: center; font-size: 11px; color: var(--muted); margin-top: 16px; letter-spacing: 0.5px; }
-.brndme-tag span { color: var(--gold); font-weight: 600; }
-
-/* ── SUCCESS ──────────────────────────────────────── */
-.success-screen { display: none; text-align: center; padding: 48px 24px; }
-.success-screen.show { display: block; }
-.success-icon { font-size: 52px; margin-bottom: 16px; }
-.success-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 500; color: var(--plum); margin-bottom: 10px; }
-.success-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
-.success-back-btn {
-  padding: 12px 28px;
-  background: var(--plum); color: var(--white);
-  border: none; border-radius: var(--r);
-  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
-  cursor: pointer; transition: background 0.2s;
-}
-.success-back-btn:hover { background: var(--violet); }
-
-/* ── FOOTER ──────────────────────────────────────── */
-footer {
-  background: var(--plum); color: rgba(255,255,255,0.4);
-  text-align: center; padding: 24px;
-  font-size: 12px; letter-spacing: 0.5px; margin-top: 48px;
-}
-footer span { color: var(--gold); }
-
-/* ════════════════════════════════════════════════════
-   COMPREHENSIVE MOBILE OVERHAUL — Brand Portals
-   Breakpoints: 768px (tablet), 480px (mobile)
-   ════════════════════════════════════════════════════ */
-
-/* ── TABLET (768px) ──────────────────────────────── */
-@media (max-width: 768px) {
-  /* Header */
-  header { padding: 0 20px; }
-  .header-inner { height: 60px; }
-  .brand-name { font-size: 20px; }
-  .brand-sub { display: none; }
-  .cart-btn { padding: 8px 14px; font-size: 12px; gap: 6px; }
-
-  /* Hero */
-  .hero { padding: 72px 24px 56px; }
-  .hero-eyebrow { font-size: 10px; letter-spacing: 2px; margin-bottom: 16px; }
-  .hero-title { font-size: clamp(38px, 9vw, 56px); }
-  .hero-tagline { font-size: 14px; }
-  .hero-desc { font-size: 13px; margin-bottom: 28px; }
-  .hero-pills { gap: 6px; }
-  .hero-pill { font-size: 11px; padding: 5px 12px; }
-
-  /* Catalog */
-  .catalog-section { padding: 40px 20px; }
-  .section-title { font-size: 28px; }
-  .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .card-img-wrap { height: 180px; }
-
-  /* Filter bar — horizontally scrollable */
-  .filter-bar {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 8px;
-    scrollbar-width: none;
-    margin-bottom: 24px;
-  }
-  .filter-bar::-webkit-scrollbar { display: none; }
-  .filter-btn { flex-shrink: 0; white-space: nowrap; }
-
-  /* Cart drawer */
-  .cart-drawer { width: 100vw; max-width: 100vw; }
-
-  /* Modals — full screen on tablet */
-  .modal { max-width: 100%; border-radius: 16px 16px 0 0; }
-  .modal-overlay { align-items: flex-end; padding: 0; }
-  .modal-img { height: 220px; border-radius: 16px 16px 0 0; }
-
-  /* Order form */
-  .order-overlay { padding: 0; align-items: flex-end; }
-  .order-modal { max-width: 100%; border-radius: 16px 16px 0 0; max-height: 95vh; }
-  .order-head { border-radius: 16px 16px 0 0; }
-
-  /* Footer */
-  footer { flex-direction: column; text-align: center; padding: 20px 24px; gap: 8px; }
-}
-
-/* ── MOBILE (480px) ──────────────────────────────── */
-@media (max-width: 480px) {
-  /* Announce bar */
-  .announce { font-size: 10px; letter-spacing: 1px; padding: 7px 12px; }
-
-  /* Header */
-  header { padding: 0 16px; }
-  .header-inner { height: 56px; }
-  .brand-name { font-size: 18px; }
-  .cart-btn { padding: 7px 12px; font-size: 11px; border-radius: 8px; }
-  .cart-btn span:not(.cart-count) { display: none; }
-
-  /* Hero */
-  .hero { padding: 64px 20px 48px; }
-  .hero-title { font-size: clamp(32px, 10vw, 44px); letter-spacing: -0.5px; }
-  .hero-subtitle { font-size: 13px; letter-spacing: 3px; }
-  .hero-tagline { font-size: 13px; margin-bottom: 16px; }
-  .hero-desc { font-size: 13px; line-height: 1.7; margin-bottom: 24px; }
-  .hero-badge { font-size: 10px; padding: 5px 12px; }
-  .hero-eyebrow::before, .hero-eyebrow::after { width: 20px; }
-  .hero-pills { gap: 6px; }
-  .hero-pill { font-size: 10px; padding: 5px 10px; }
-
-  /* Catalog */
-  .catalog-section { padding: 28px 16px 40px; }
-  .section-header { margin-bottom: 16px; }
-  .section-title { font-size: 24px; }
-  .catalog-count { font-size: 12px; }
-  .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-
-  /* Cards */
-  .card-img-wrap { height: 160px; }
-  .card-body { padding: 10px 12px 12px; }
-  .card-category { font-size: 9px; margin-bottom: 3px; }
-  .card-title { font-size: 13px; line-height: 1.25; margin-bottom: 3px; }
-  .card-volume { font-size: 10px; margin-bottom: 6px; }
-  .card-status { margin-bottom: 8px; }
-  .card-status span { font-size: 10px !important; }
-  .card-action { padding: 8px; font-size: 11px; border-radius: 8px; }
-
-  /* Cart drawer */
-  .cart-drawer { width: 100vw; }
-  .cart-head { padding: 16px 20px; }
-  .cart-head-title { font-size: 18px; }
-  .cart-items { padding: 12px 20px; }
-  .cart-footer { padding: 12px 20px; }
-  .cart-checkout-btn { padding: 13px; font-size: 14px; }
-  .cart-item-img { width: 48px; height: 48px; font-size: 18px; }
-  .cart-item-title { font-size: 14px; }
-
-  /* Product modal */
-  .modal-img { height: 200px; }
-  .modal-body { padding: 18px 20px; }
-  .modal-title { font-size: 20px; }
-  .modal-actions { flex-direction: column; gap: 8px; }
-  .modal-add-btn { padding: 13px; font-size: 13px; }
-  .modal-close-btn { padding: 11px; font-size: 12px; text-align: center; }
-
-  /* Order form */
-  .order-head { padding: 18px 20px; }
-  .order-head-title { font-size: 22px; }
-  .order-body { padding: 18px 20px; }
-  .form-input, .form-textarea { font-size: 16px; padding: 12px 14px; }
-  .form-submit { font-size: 15px; padding: 14px; }
-
-  /* Success screen */
-  .success-icon { font-size: 48px; }
-  .success-title { font-size: 26px; }
-  .success-desc { font-size: 13px; }
-
-  /* Section title (catalog) */
-  .section-title { font-size: 24px; }
-}
-
+:root{--forest:#2D1B4E;--sage:#9B7FBD;--leaf:#4A2D7A;--cream:#FAF8FC;--card:#F3EEF8;--gold:#C9A84C;--text:#2C2433;--muted:#7A6E85;--white:#FFFFFF;--border:#DDD5E8;--success:#4A7C59;--r:8px;}
+*{-webkit-tap-highlight-color:transparent;}button,a{touch-action:manipulation;}input,textarea,select{font-size:16px!important;}body{-webkit-text-size-adjust:100%;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+#loadingOverlay{position:fixed;inset:0;z-index:9999;background:#1A0F2E;display:flex;align-items:center;justify-content:center;transition:opacity 0.7s ease;}
+#loadingOverlay.hidden{opacity:0;pointer-events:none;}
+.lc{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;}
+.l-brand{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;color:#F5F0FB;letter-spacing:2px;line-height:1;}
+.l-tag{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:300;font-style:italic;color:rgba(155,127,189,.7);letter-spacing:1px;}
+.l-sub{font-size:9px;color:#4A2D7A;letter-spacing:3px;text-transform:uppercase;margin-top:2px;}
+.sweep-track{width:200px;height:2px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;margin:4px 0;}
+.sweep-fill{height:100%;width:0%;border-radius:2px;background:linear-gradient(90deg,#4A2D7A,#9B7FBD,#C9A84C);animation:sw 2.8s cubic-bezier(.4,0,.2,1) infinite;}
+@keyframes sw{0%{width:0%;opacity:1;}70%{width:100%;opacity:1;}85%{width:100%;opacity:0;}86%{width:0%;opacity:0;}100%{width:0%;opacity:1;}}
+.announce{background:var(--forest);color:rgba(255,255,255,.75);text-align:center;padding:8px 16px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+.announce span{color:var(--gold);}
+header{background:rgba(250,248,252,.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 32px;backdrop-filter:blur(12px);}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.brand-block{display:flex;flex-direction:column;}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--forest);letter-spacing:1px;line-height:1;}
+.brand-sub{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:3px;}
+.brand-sub span{color:var(--gold);font-weight:600;}
+.cart-btn{background:var(--forest);color:var(--white);border:none;padding:9px 20px;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .2s;}
+.cart-btn:hover{background:var(--leaf);}
+.cart-count{background:var(--gold);color:var(--forest);font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.hero{background:var(--forest);position:relative;overflow:hidden;padding:80px 32px;text-align:center;}
+.hero-bg{position:absolute;inset:0;background-image:radial-gradient(ellipse 70% 60% at 15% 50%,rgba(155,127,189,.2) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 30%,rgba(201,168,76,.1) 0%,transparent 60%);}
+.hero-deco{position:absolute;inset:0;overflow:hidden;opacity:.06;}
+.hero-deco svg{position:absolute;}
+.hero-content{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+.hero-eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:32px;height:1px;background:rgba(201,168,76,.4);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,7vw,72px);font-weight:300;color:var(--white);line-height:1.15;letter-spacing:1px;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;font-style:italic;color:rgba(255,255,255,.5);letter-spacing:2px;margin-bottom:24px;}
+.hero-desc{font-size:14px;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:36px;font-weight:300;max-width:480px;margin-left:auto;margin-right:auto;}
+.hero-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.hero-pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);padding:6px 14px;border-radius:20px;font-size:11px;}
+.catalog-section{max-width:1200px;margin:0 auto;padding:52px 32px;}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;color:var(--forest);}
+.section-title span{color:var(--sage);font-style:italic;}
+.catalog-count{font-size:13px;color:var(--muted);}
+.filter-bar{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap;}
+.filter-btn{padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;}
+.filter-btn:hover{border-color:var(--sage);color:var(--leaf);}
+.filter-btn.active{background:var(--forest);border-color:var(--forest);color:var(--white);}
+.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;}
+.product-card{background:var(--white);border-radius:12px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:transform .22s,box-shadow .22s;}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(45,27,78,.1);}
+.card-img-wrap{position:relative;background:var(--card);height:220px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .35s;}
+.product-card:hover .card-img-wrap img{transform:scale(1.04);}
+.card-img-placeholder{font-size:56px;opacity:.25;}
+.card-badge{position:absolute;top:10px;left:10px;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
+.badge-bestseller{background:var(--gold);color:var(--forest);}
+.badge-outofstock{background:#e8e8e8;color:#999;}
+.card-body{padding:14px 16px 16px;}
+.card-category{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);font-weight:500;margin-bottom:5px;}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--forest);line-height:1.35;margin-bottom:4px;}
+.card-volume{font-size:11px;font-weight:600;color:var(--sage);letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;}
+.card-status{display:flex;align-items:center;gap:6px;font-size:12px;margin-bottom:10px;}
+.status-dot{width:7px;height:7px;border-radius:50%;}
+.status-dot.in{background:var(--success);}.status-dot.out{background:#ccc;}
+.card-action{width:100%;padding:9px;background:var(--forest);color:var(--white);border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:background .2s;}
+.card-action:hover{background:var(--leaf);}
+.card-action.out-btn{background:#f0f0f0;color:#aaa;cursor:not-allowed;}
+.loading-state{text-align:center;padding:80px 20px;color:var(--muted);}
+.loading-dots span{display:inline-block;width:8px;height:8px;background:var(--sage);border-radius:50%;margin:0 3px;animation:bounce 1.2s infinite;}
+.loading-dots span:nth-child(2){animation-delay:.2s;}.loading-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.4;}40%{transform:translateY(-8px);opacity:1;}}
+.cart-overlay{position:fixed;inset:0;background:rgba(45,27,78,.4);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s;}
+.cart-overlay.open{opacity:1;pointer-events:all;}
+.cart-drawer{position:fixed;top:0;right:0;width:380px;max-width:95vw;height:100vh;background:var(--white);z-index:201;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;}
+.cart-drawer.open{transform:translateX(0);}
+.cart-head{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.cart-head-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--forest);}
+.cart-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px;}
+.cart-empty-msg{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.cart-item-img{width:60px;height:60px;border-radius:var(--r);background:var(--card);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;}
+.cart-item-img img{width:100%;height:100%;object-fit:cover;}
+.cart-item-info{flex:1;}
+.cart-item-title{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;color:var(--forest);line-height:1.3;}
+.cart-item-category{font-size:11px;color:var(--sage);margin-top:2px;text-transform:uppercase;letter-spacing:.8px;}
+.cart-item-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;}
+.cart-item-remove:hover{color:#c0392b;}
+.cart-footer{padding:16px 24px;border-top:1px solid var(--border);}
+.cart-summary{font-size:13px;color:var(--muted);margin-bottom:14px;}
+.cart-checkout-btn{width:100%;padding:13px;background:var(--forest);color:var(--white);border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;}
+.cart-checkout-btn:hover{background:var(--leaf);}
+.cart-checkout-btn:disabled{background:#ccc;cursor:not-allowed;}
+.modal-overlay{position:fixed;inset:0;background:rgba(45,27,78,.5);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{background:var(--white);border-radius:14px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;transform:translateY(16px);transition:transform .25s;}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal-img{width:100%;height:260px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:80px;overflow:hidden;border-radius:14px 14px 0 0;}
+.modal-img img{width:100%;height:100%;object-fit:cover;}
+.modal-body{padding:24px;}
+.modal-category{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--sage);font-weight:500;margin-bottom:6px;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--forest);line-height:1.3;margin-bottom:6px;}
+.modal-asin{font-size:11px;color:var(--muted);margin-bottom:6px;}
+.modal-volume{display:inline-block;background:var(--card);color:var(--sage);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:12px;margin-bottom:16px;}
+.modal-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.modal-stock-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;margin-bottom:20px;}
+.modal-stock-badge.in{background:#E8F5E9;color:var(--success);}
+.modal-stock-badge.out{background:#f5f5f5;color:#aaa;}
+.modal-actions{display:flex;gap:10px;margin-top:20px;}
+.modal-add-btn{flex:1;padding:12px;background:var(--forest);color:var(--white);border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;}
+.modal-add-btn:hover{background:var(--leaf);}
+.modal-add-btn:disabled{background:#ccc;cursor:not-allowed;}
+.modal-close-btn{padding:12px 20px;background:none;color:var(--muted);border:1px solid var(--border);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;}
+.modal-close-btn:hover{border-color:var(--sage);color:var(--leaf);}
+.order-overlay{position:fixed;inset:0;background:rgba(45,27,78,.55);z-index:400;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s;}
+.order-overlay.open{opacity:1;pointer-events:all;}
+.order-modal{background:var(--white);border-radius:14px;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;transform:translateY(16px);transition:transform .25s;}
+.order-overlay.open .order-modal{transform:translateY(0);}
+.order-head{background:var(--forest);padding:20px 24px;border-radius:14px 14px 0 0;}
+.order-head-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--white);}
+.order-head-sub{font-size:12px;color:rgba(255,255,255,.5);margin-top:3px;}
+.order-body{padding:24px;}
+.order-summary{background:var(--card);border-radius:var(--r);padding:12px 14px;margin-bottom:20px;}
+.order-summary-title{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.order-summary-item{font-size:13px;color:var(--forest);padding:3px 0;display:flex;align-items:center;gap:6px;}
+.order-summary-item::before{content:'✦';font-size:9px;color:var(--sage);}
+.form-group{margin-bottom:16px;}
+.form-label{display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.form-input,.form-textarea{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--white);transition:border-color .15s;outline:none;}
+.form-input:focus,.form-textarea:focus{border-color:var(--sage);}
+.form-textarea{resize:vertical;min-height:90px;}
+.form-submit{width:100%;padding:13px;background:var(--forest);color:var(--white);border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;margin-top:4px;}
+.form-submit:hover{background:var(--leaf);}
+.form-cancel{width:100%;padding:10px;background:none;color:var(--muted);border:none;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;margin-top:8px;text-decoration:underline;}
+.brndme-tag{text-align:center;font-size:11px;color:var(--muted);margin-top:16px;}
+.brndme-tag span{color:var(--gold);font-weight:600;}
+.success-screen{display:none;text-align:center;padding:48px 24px;}
+.success-screen.show{display:block;}
+.success-icon{font-size:52px;margin-bottom:16px;}
+.success-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--forest);margin-bottom:10px;}
+.success-desc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:24px;}
+.success-back-btn{padding:12px 28px;background:var(--forest);color:var(--white);border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;}
+.success-back-btn:hover{background:var(--leaf);}
+footer{background:var(--forest);color:rgba(255,255,255,.4);text-align:center;padding:24px;font-size:12px;letter-spacing:.5px;margin-top:48px;}
+footer span{color:var(--gold);}
+@media(max-width:768px){header{padding:0 20px;}.header-inner{height:60px;}.brand-name{font-size:20px;}.brand-sub{display:none;}.cart-btn{padding:8px 14px;font-size:12px;}.hero{padding:72px 24px 56px;}.catalog-section{padding:40px 20px;}.section-title{font-size:28px;}.catalog-grid{grid-template-columns:repeat(2,1fr);gap:12px;}.card-img-wrap{height:180px;}.filter-bar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px;scrollbar-width:none;margin-bottom:24px;}.filter-bar::-webkit-scrollbar{display:none;}.filter-btn{flex-shrink:0;white-space:nowrap;}.cart-drawer{width:100vw;max-width:100vw;}.modal{max-width:100%;border-radius:16px 16px 0 0;}.modal-overlay{align-items:flex-end;padding:0;}.modal-img{height:220px;border-radius:16px 16px 0 0;}.order-overlay{padding:0;align-items:flex-end;}.order-modal{max-width:100%;border-radius:16px 16px 0 0;max-height:95vh;}.order-head{border-radius:16px 16px 0 0;}}
+@media(max-width:480px){header{padding:0 16px;}.header-inner{height:56px;}.brand-name{font-size:18px;}.cart-btn{padding:7px 12px;font-size:11px;}.cart-btn span:not(.cart-count){display:none;}.hero{padding:64px 20px 48px;}.catalog-section{padding:28px 16px 40px;}.section-title{font-size:24px;}.catalog-grid{grid-template-columns:repeat(2,1fr);gap:10px;}.card-img-wrap{height:160px;}.card-body{padding:10px 12px 12px;}.card-title{font-size:13px;}.card-action{padding:8px;font-size:11px;}.cart-drawer{width:100vw;}.modal-img{height:200px;}.modal-body{padding:18px 20px;}.modal-title{font-size:20px;}.modal-actions{flex-direction:column;gap:8px;}.order-head{padding:18px 20px;}.order-body{padding:18px 20px;}}
 </style>
 </head>
 <body>
-
-<div class="announce">
-  Exclusive Influencer Gifting Program &nbsp;·&nbsp; <span>Majestic Pure</span> × BRND.ME
-</div>
-
-<header>
-  <div class="header-inner">
-    <div class="brand-block">
-      <div class="brand-name">Majestic Pure</div>
-      <div class="brand-sub">Aromatherapy & Wellness &nbsp;·&nbsp; by <span>BRND.ME</span></div>
-    </div>
-    <button class="cart-btn" onclick="openCart()">
-      🛒 My Picks
-      <span class="cart-count" id="cartCount">0</span>
-    </button>
-  </div>
-</header>
-
+<div id="loadingOverlay"><div class="lc">
+  <div class="l-brand">Majestic Pure</div>
+  <div class="l-tag">Simple. Natural. Restorative.</div>
+  <div class="sweep-track"><div class="sweep-fill"></div></div>
+  <div class="l-sub">by BRND·ME</div>
+</div></div>
+<div class="announce">Exclusive Influencer Gifting Program &nbsp;·&nbsp; <span>Majestic Pure</span> × BRND.ME</div>
+<header><div class="header-inner">
+  <div class="brand-block"><div class="brand-name">Majestic Pure</div><div class="brand-sub">Aromatherapy & Wellness &nbsp;·&nbsp; by <span>BRND.ME</span></div></div>
+  <button class="cart-btn" onclick="openCart()">🛒 My Picks <span class="cart-count" id="cartCount">0</span></button>
+</div></header>
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-deco">
@@ -746,386 +174,126 @@ footer span { color: var(--gold); }
   </div>
   <div class="hero-content">
     <div class="hero-eyebrow">Influencer Gifting — Exclusive Access</div>
-    <h1 class="hero-title">
-      Simple<em>.</em> Natural<em>.</em><br>Restorative<em>.</em>
-    </h1>
+    <h1 class="hero-title">Simple<em>.</em> Natural<em>.</em><br>Restorative<em>.</em></h1>
     <div class="hero-tagline">Born from a love for aromatherapy</div>
-    <p class="hero-desc">
-      Explore our collection of essential oils, massage oils and body care. Choose the products you'd love to share with your community — completely complimentary.
-    </p>
-    <div class="hero-pills">
-      <span class="hero-pill">🌸 Essential Oils</span>
-      <span class="hero-pill">💆 Massage Oils</span>
-      <span class="hero-pill">✨ Body Care</span>
-      <span class="hero-pill">🌿 100% Natural</span>
-      <span class="hero-pill">🧴 Aromatherapy</span>
-    </div>
+    <p class="hero-desc">Explore our collection of essential oils, massage oils and body care. Choose the products you'd love to share with your community — completely complimentary.</p>
+    <div class="hero-pills"><span class="hero-pill">🌸 Essential Oils</span><span class="hero-pill">💆 Massage Oils</span><span class="hero-pill">✨ Body Care</span><span class="hero-pill">🌿 100% Natural</span><span class="hero-pill">🧴 Aromatherapy</span></div>
   </div>
 </section>
-
 <section class="catalog-section">
-  <div class="section-header">
-    <h2 class="section-title">Browse the <span>Collection</span></h2>
-    <span class="catalog-count" id="catalogCount">Loading products...</span>
-  </div>
-  <div class="filter-bar" id="filterBar">
-    <button class="filter-btn active" onclick="filterCatalog('all', this)">All</button>
-  </div>
-  <div class="catalog-grid" id="catalogGrid">
-    <div class="loading-state" id="loadingState">
-      <div class="loading-dots"><span></span><span></span><span></span></div>
-      <p style="margin-top:16px;font-size:13px;">Loading products...</p>
-    </div>
-  </div>
+  <div class="section-header"><h2 class="section-title">Browse the <span>Collection</span></h2><span class="catalog-count" id="catalogCount">Loading products...</span></div>
+  <div class="filter-bar" id="filterBar"><button class="filter-btn active" onclick="filterCatalog('all',this)">All</button></div>
+  <div class="catalog-grid" id="catalogGrid"><div class="loading-state" id="loadingState"><div class="loading-dots"><span></span><span></span><span></span></div><p style="margin-top:16px;font-size:13px;">Loading products...</p></div></div>
 </section>
-
-<!-- Cart Drawer -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
-  <div class="cart-head">
-    <span class="cart-head-title">My Picks</span>
-    <button class="cart-close" onclick="closeCart()">✕</button>
-  </div>
-  <div class="cart-items" id="cartItems">
-    <div class="cart-empty-msg">Your picks will appear here 💜</div>
-  </div>
-  <div class="cart-footer">
-    <div class="cart-summary" id="cartSummary"></div>
-    <button class="cart-checkout-btn" id="checkoutBtn" onclick="openOrderForm()" disabled>Place Free Order</button>
-  </div>
+  <div class="cart-head"><span class="cart-head-title">My Picks</span><button class="cart-close" onclick="closeCart()">✕</button></div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty-msg">Your picks will appear here 💜</div></div>
+  <div class="cart-footer"><div class="cart-summary" id="cartSummary"></div><button class="cart-checkout-btn" id="checkoutBtn" onclick="openOrderForm()" disabled>Place Free Order</button></div>
 </div>
-
-<!-- Product Modal -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal" id="productModal">
-    <div class="modal-img" id="modalImg"></div>
+  <div class="modal"><div class="modal-img" id="modalImg"></div>
     <div class="modal-body">
-      <div class="modal-category" id="modalCategory"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-asin" id="modalAsin"></div>
-      <div class="modal-volume" id="modalVolume"></div>
-      <div class="modal-label">Availability</div>
-      <div class="modal-stock-badge in" id="modalStock">✅ In Stock</div>
-      <div class="modal-actions">
-        <button class="modal-add-btn" id="modalAddBtn" onclick="addToCartFromModal()">Add to My Picks</button>
-        <button class="modal-close-btn" onclick="closeModal()">Close</button>
-      </div>
+      <div class="modal-category" id="modalCategory"></div><div class="modal-title" id="modalTitle"></div>
+      <div class="modal-asin" id="modalAsin"></div><div class="modal-volume" id="modalVolume"></div>
+      <div class="modal-label">Availability</div><div class="modal-stock-badge in" id="modalStock">✅ In Stock</div>
+      <div class="modal-actions"><button class="modal-add-btn" id="modalAddBtn" onclick="addToCartFromModal()">Add to My Picks</button><button class="modal-close-btn" onclick="closeModal()">Close</button></div>
     </div>
   </div>
 </div>
-
-<!-- Order Form -->
 <div class="order-overlay" id="orderOverlay">
-  <div class="order-modal">
-    <div id="orderFormContent">
-      <div class="order-head">
-        <div class="order-head-title">Complete Your Request</div>
-        <div class="order-head-sub">Free gifting — no payment required</div>
-      </div>
-      <div class="order-body">
-        <div class="order-summary">
-          <div class="order-summary-title">Your Picks</div>
-          <div id="orderSummaryItems"></div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Full Name *</label>
-          <input class="form-input" type="text" id="fieldName" placeholder="Your full name">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Contact Number *</label>
-          <input class="form-input" type="tel" id="fieldContact" placeholder="Your phone number">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Delivery Address *</label>
-          <textarea class="form-textarea" id="fieldAddress" placeholder="Full address including city and pincode"></textarea>
-        </div>
-        <button class="form-submit" onclick="submitOrder()">Submit Request 💜</button>
-        <button class="form-cancel" onclick="closeOrderForm()">Back to picks</button>
-        <div class="brndme-tag">Majestic Pure × <span>BRND.ME</span> · Influencer Gifting Program</div>
-      </div>
-    </div>
-    <div class="success-screen" id="successScreen">
-      <div class="success-icon">💜</div>
-      <div class="success-title">Request Received!</div>
-      <div class="success-desc">Thank you! Your gifting request has been placed. Our team will process your order and get in touch with shipping details.</div>
-      <button class="success-back-btn" onclick="resetAll()">Browse More Products</button>
-      <div class="brndme-tag" style="margin-top:20px;">Majestic Pure × <span>BRND.ME</span></div>
+  <div class="order-modal"><div id="orderFormContent">
+    <div class="order-head"><div class="order-head-title">Complete Your Request</div><div class="order-head-sub">Free gifting — no payment required</div></div>
+    <div class="order-body">
+      <div class="order-summary"><div class="order-summary-title">Your Picks</div><div id="orderSummaryItems"></div></div>
+      <div class="form-group"><label class="form-label">Full Name *</label><input class="form-input" type="text" id="fieldName" placeholder="Your full name"></div>
+      <div class="form-group"><label class="form-label">Contact Number *</label><input class="form-input" type="tel" id="fieldContact" placeholder="Your phone number"></div>
+      <div class="form-group"><label class="form-label">Delivery Address *</label><textarea class="form-textarea" id="fieldAddress" placeholder="Full address including city and pincode"></textarea></div>
+      <button class="form-submit" onclick="submitOrder()">Submit Request 💜</button>
+      <button class="form-cancel" onclick="closeOrderForm()">Back to picks</button>
+      <div class="brndme-tag">Majestic Pure × <span>BRND.ME</span> · Influencer Gifting Program</div>
     </div>
   </div>
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">💜</div><div class="success-title">Request Received!</div>
+    <div class="success-desc">Thank you! Your gifting request has been placed. Our team will process your order and get in touch with shipping details.</div>
+    <button class="success-back-btn" onclick="resetAll()">Browse More Products</button>
+    <div class="brndme-tag" style="margin-top:20px;">Majestic Pure × <span>BRND.ME</span></div>
+  </div></div>
 </div>
-
-<footer>
-  <p>Majestic Pure · <span>BRND.ME</span> Influencer Gifting Program · Born from Aromatherapy</p>
-</footer>
-
+<footer><p>Majestic Pure · <span>BRND.ME</span> Influencer Gifting Program · Born from Aromatherapy</p></footer>
 <script>
-// ── CONFIG ────────────────────────────────────────────
-const SHEET_ID        = '1DKyiYXu4FgUKQrbBcb28zBfzAjgZgMGHfksWgyTn67I';
-const API_KEY         = 'AIzaSyDAkVIC8G7v8wrZdfvZBMzd5dpHCTMPfg4';
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx87o24ch57tRI0Cg9gH8BlRd4BuB1hJtV4oMKsOFc8KrDV9Veb0ZKT2f1rwoyKMhlc/exec';
-const CATALOG_SHEET   = 'Catalog_Master';
-
-// Col A(0)=EAN, B(1)=Brand, C(2)=ASIN, D(3)=SKU, E(4)=Category
-// F(5)=Image formula, G(6)=Image URL, H(7)=Product Title
-// I(8)=Short Title, J(9)=Volume, K(10)=Available QTY
-// L(11)=Stock Status, M(12)=Stock Source, N(13)=Sales Count
-// O(14)=Eligible, P(15)=Show on Page?
-
-// ── STATE ─────────────────────────────────────────────
-let products = [];
-let cart = [];
-let activeFilter = 'all';
-let currentProduct = null;
-
-// ── LOAD CATALOG ──────────────────────────────────────
-async function loadCatalog() {
-  try {
-    const range = encodeURIComponent(CATALOG_SHEET + '!A2:P502');
-    const url   = 'https://sheets.googleapis.com/v4/spreadsheets/' + SHEET_ID + '/values/' + range + '?key=' + API_KEY;
-    const res   = await fetch(url);
-    const data  = await res.json();
-
-    if (!data.values) { showError('No products found in the catalog sheet.'); return; }
-
-    products = data.values
-      .filter(row => row[15] && row[15].includes('YES'))
-      .map(row => ({
-        ean:        row[0]  || '',
-        brand:      row[1]  || 'Majestic Pure',
-        asin:       row[2]  || '',
-        sku:        row[3]  || '',
-        category:   row[4]  || 'Wellness',
-        image:      row[6]  || '',
-        title:      row[7]  || '',
-        shortTitle: row[8]  || row[7] || '',
-        volume:     row[9]  || '',
-        availQty:   parseInt(row[10]) || 0,
-        stockStatus:row[11] || '',
-        salesCount: parseInt(row[13]) || 0,
-        eligible:   row[14] || '',
-        show:       row[15] || '',
-        inStock:    row[11] && row[11].includes('In Stock'),
-      }));
-
-    renderFilters();
-    renderCatalog(products);
-    document.getElementById('catalogCount').textContent =
-      products.filter(p => p.inStock).length + ' products available';
-  } catch (err) {
-    showError('Could not load products. Please refresh the page.');
-  }
+const SHEET_ID='1DKyiYXu4FgUKQrbBcb28zBfzAjgZgMGHfksWgyTn67I';
+const API_KEY='AIzaSyDAkVIC8G7v8wrZdfvZBMzd5dpHCTMPfg4';
+const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbx87o24ch57tRI0Cg9gH8BlRd4BuB1hJtV4oMKsOFc8KrDV9Veb0ZKT2f1rwoyKMhlc/exec';
+const CATALOG_SHEET='Catalog_Master';
+let products=[],cart=[],activeFilter='all',currentProduct=null;
+function hideLoader(){const o=document.getElementById('loadingOverlay');o.classList.add('hidden');setTimeout(()=>{o.style.display='none';},750);}
+async function loadCatalog(){const minDelay=new Promise(r=>setTimeout(r,3000));const catalogLoad=fetchCatalog();await Promise.all([minDelay,catalogLoad]);hideLoader();}
+async function fetchCatalog(){
+  try{
+    const range=encodeURIComponent(CATALOG_SHEET+'!A2:P502');
+    const url='https://sheets.googleapis.com/v4/spreadsheets/'+SHEET_ID+'/values/'+range+'?key='+API_KEY;
+    const res=await fetch(url);const data=await res.json();
+    if(!data.values){showError('No products found.');return;}
+    products=data.values.filter(r=>r[15]&&r[15].includes('YES')).map(r=>({
+      ean:r[0]||'',brand:r[1]||'Majestic Pure',asin:r[2]||'',sku:r[3]||'',category:r[4]||'Wellness',
+      image:r[6]||'',title:r[7]||'',shortTitle:r[8]||r[7]||'',volume:r[9]||'',
+      availQty:parseInt(r[10])||0,stockStatus:r[11]||'',salesCount:parseInt(r[13])||0,
+      inStock:!!(r[11]&&r[11].includes('In Stock')),
+    }));
+    renderFilters();renderCatalog(products);
+    document.getElementById('catalogCount').textContent=products.filter(p=>p.inStock).length+' products available';
+  }catch(e){showError('Could not load products. Please refresh.');}
 }
-
-function showError(msg) {
-  document.getElementById('loadingState').innerHTML = '<p style="color:#c0392b;font-size:14px;">' + msg + '</p>';
-}
-
-// ── RENDER FILTERS ────────────────────────────────────
-function renderFilters() {
-  const categories = ['all', ...new Set(products.map(p => p.category).filter(Boolean))];
-  document.getElementById('filterBar').innerHTML = categories.map(cat =>
-    '<button class="filter-btn ' + (cat === 'all' ? 'active' : '') + '" onclick="filterCatalog(\'' + cat + '\', this)">' +
-    (cat === 'all' ? 'All' : cat) + '</button>'
-  ).join('');
-}
-
-// ── RENDER CATALOG ────────────────────────────────────
-function renderCatalog(items) {
-  const grid = document.getElementById('catalogGrid');
-  document.getElementById('loadingState')?.remove();
-
-  if (items.length === 0) {
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted)"><p style="font-size:32px;margin-bottom:12px">💜</p><p>No products found in this category.</p></div>';
-    return;
-  }
-
-  grid.innerHTML = items.map(p => {
-    const inCart = cart.some(c => c.ean === p.ean);
-    const badge  = p.salesCount > 500 ? '<span class="card-badge badge-bestseller">Bestseller</span>' : '';
-    const imgHtml = p.image ? '<img src="' + p.image + '" alt="' + (p.shortTitle || p.title) + '" onerror="this.style.display=\'none\'">' : '';
-    const placeholder = '<span class="card-img-placeholder" style="' + (p.image ? 'display:none' : '') + '">🌿</span>';
-
-    return '<div class="product-card" onclick="openModal(\'' + p.ean + '\')">' +
-      '<div class="card-img-wrap">' + imgHtml + placeholder + badge +
-      (!p.inStock ? '<span class="card-badge badge-outofstock">Out of Stock</span>' : '') + '</div>' +
-      '<div class="card-body">' +
-      '<div class="card-category">' + p.category + '</div>' +
-      '<div class="card-title">' + (p.shortTitle || p.title) + '</div>' +
-      (p.volume ? '<div class="card-volume">' + p.volume + '</div>' : '') +
-      '<div class="card-status"><span class="status-dot ' + (p.inStock ? 'in' : 'out') + '"></span>' +
-      '<span style="font-size:12px;color:var(--muted)">' + (p.inStock ? 'In Stock' : 'Out of Stock') + '</span></div>' +
-      '<button class="card-action ' + (!p.inStock ? 'out-btn' : '') + '" ' +
-      (!p.inStock ? 'disabled' : '') + ' onclick="event.stopPropagation();' +
-      (p.inStock ? 'quickAdd(\'' + p.ean + '\')' : '') + '">' +
-      (inCart ? '✓ Added' : p.inStock ? 'Add to Picks' : 'Out of Stock') + '</button>' +
-      '</div></div>';
+function showError(m){const el=document.getElementById('loadingState');if(el)el.innerHTML='<p style="color:#c0392b;font-size:14px;">'+m+'</p>';}
+function renderFilters(){const cats=['all',...new Set(products.map(p=>p.category).filter(Boolean))];document.getElementById('filterBar').innerHTML=cats.map(c=>'<button class="filter-btn '+(c==='all'?'active':'')+'" onclick="filterCatalog(\''+c+'\',this)">'+(c==='all'?'All':c)+'</button>').join('');}
+function renderCatalog(items){
+  const grid=document.getElementById('catalogGrid');document.getElementById('loadingState')?.remove();
+  if(!items.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted)"><p style="font-size:32px;margin-bottom:12px">💜</p><p>No products found.</p></div>';return;}
+  grid.innerHTML=items.map(p=>{
+    const inCart=cart.some(c=>c.ean===p.ean),badge=p.salesCount>500?'<span class="card-badge badge-bestseller">Bestseller</span>':'';
+    const img=p.image?'<img src="'+p.image+'" alt="'+(p.shortTitle||p.title)+'" onerror="this.style.display=\'none\'">':'';
+    const ph='<span class="card-img-placeholder" style="'+(p.image?'display:none':'')+'">🌿</span>';
+    return '<div class="product-card" onclick="openModal(\''+p.ean+'\')">'+'<div class="card-img-wrap">'+img+ph+badge+(!p.inStock?'<span class="card-badge badge-outofstock">Out of Stock</span>':'')+'</div>'+'<div class="card-body"><div class="card-category">'+p.category+'</div><div class="card-title">'+(p.shortTitle||p.title)+'</div>'+(p.volume?'<div class="card-volume">'+p.volume+'</div>':'')+'<div class="card-status"><span class="status-dot '+(p.inStock?'in':'out')+'"></span><span style="font-size:12px;color:var(--muted)">'+(p.inStock?'In Stock':'Out of Stock')+'</span></div><button class="card-action '+(!p.inStock?'out-btn':'')+'" '+(!p.inStock?'disabled':'')+' onclick="event.stopPropagation();'+(p.inStock?'quickAdd(\''+p.ean+'\')':'')+'">'+(inCart?'✓ Added':p.inStock?'Add to Picks':'Out of Stock')+'</button></div></div>';
   }).join('');
 }
-
-function filterCatalog(cat, btn) {
-  activeFilter = cat;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderCatalog(cat === 'all' ? products : products.filter(p => p.category === cat));
+function filterCatalog(cat,btn){activeFilter=cat;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderCatalog(cat==='all'?products:products.filter(p=>p.category===cat));}
+function openModal(ean){
+  const p=products.find(x=>x.ean===ean);if(!p)return;currentProduct=p;
+  document.getElementById('modalImg').innerHTML=p.image?'<img src="'+p.image+'" alt="'+(p.shortTitle||p.title)+'" onerror="this.parentElement.innerHTML=\'🌿\'">':'🌿';
+  document.getElementById('modalCategory').textContent=p.category;document.getElementById('modalTitle').textContent=p.shortTitle||p.title;document.getElementById('modalAsin').textContent=p.asin?'ASIN: '+p.asin:'';
+  const v=document.getElementById('modalVolume');v.textContent=p.volume||'';v.style.display=p.volume?'inline-block':'none';
+  const s=document.getElementById('modalStock');s.className='modal-stock-badge '+(p.inStock?'in':'out');s.textContent=p.inStock?'✅ In Stock':'❌ Out of Stock';
+  const b=document.getElementById('modalAddBtn'),inCart=cart.some(c=>c.ean===p.ean);b.disabled=!p.inStock||inCart;b.textContent=inCart?'✓ Already in Picks':'Add to My Picks';
+  document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';
 }
-
-// ── MODAL ─────────────────────────────────────────────
-function openModal(ean) {
-  const p = products.find(x => x.ean === ean);
-  if (!p) return;
-  currentProduct = p;
-
-  const imgEl = document.getElementById('modalImg');
-  imgEl.innerHTML = p.image
-    ? '<img src="' + p.image + '" alt="' + (p.shortTitle || p.title) + '" onerror="this.parentElement.innerHTML=\'🌿\'">'
-    : '🌿';
-
-  document.getElementById('modalCategory').textContent = p.category;
-  document.getElementById('modalTitle').textContent     = p.shortTitle || p.title;
-  document.getElementById('modalAsin').textContent      = p.asin ? 'ASIN: ' + p.asin : '';
-
-  const volEl = document.getElementById('modalVolume');
-  volEl.textContent    = p.volume || '';
-  volEl.style.display  = p.volume ? 'inline-block' : 'none';
-
-  const stockBadge = document.getElementById('modalStock');
-  stockBadge.className = 'modal-stock-badge ' + (p.inStock ? 'in' : 'out');
-  stockBadge.textContent = p.inStock ? '✅ In Stock' : '❌ Out of Stock';
-
-  const addBtn = document.getElementById('modalAddBtn');
-  const inCart = cart.some(c => c.ean === p.ean);
-  addBtn.disabled    = !p.inStock || inCart;
-  addBtn.textContent = inCart ? '✓ Already in Picks' : 'Add to My Picks';
-
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+function closeModal(e){if(e&&e.target!==document.getElementById('modalOverlay'))return;document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';currentProduct=null;}
+function addToCartFromModal(){if(!currentProduct)return;addToCart(currentProduct.ean);closeModal();}
+function quickAdd(ean){addToCart(ean);}
+function addToCart(ean){const p=products.find(x=>x.ean===ean);if(!p||!p.inStock||cart.some(c=>c.ean===ean))return;cart.push(p);updateCartUI();renderCatalog(activeFilter==='all'?products:products.filter(p=>p.category===activeFilter));}
+function removeFromCart(ean){cart=cart.filter(c=>c.ean!==ean);updateCartUI();renderCatalog(activeFilter==='all'?products:products.filter(p=>p.category===activeFilter));}
+function updateCartUI(){
+  const n=cart.length;document.getElementById('cartCount').textContent=n;document.getElementById('checkoutBtn').disabled=n===0;
+  document.getElementById('cartSummary').textContent=n>0?n+' item'+(n>1?'s':'')+' selected':'';
+  const el=document.getElementById('cartItems');
+  if(!n){el.innerHTML='<div class="cart-empty-msg">Your picks will appear here 💜</div>';return;}
+  el.innerHTML=cart.map(p=>'<div class="cart-item"><div class="cart-item-img">'+(p.image?'<img src="'+p.image+'" onerror="this.parentElement.innerHTML=\'🌿\'">':'🌿')+'</div><div class="cart-item-info"><div class="cart-item-title">'+(p.shortTitle||p.title)+'</div><div class="cart-item-category">'+p.category+'</div></div><button class="cart-item-remove" onclick="removeFromCart(\''+p.ean+'\')">✕</button></div>').join('');
 }
-
-function closeModal(e) {
-  if (e && e.target !== document.getElementById('modalOverlay')) return;
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-  currentProduct = null;
+function openCart(){document.getElementById('cartOverlay').classList.add('open');document.getElementById('cartDrawer').classList.add('open');document.body.style.overflow='hidden';}
+function closeCart(){document.getElementById('cartOverlay').classList.remove('open');document.getElementById('cartDrawer').classList.remove('open');document.body.style.overflow='';}
+function openOrderForm(){closeCart();document.getElementById('orderSummaryItems').innerHTML=cart.map(p=>'<div class="order-summary-item">'+(p.shortTitle||p.title)+'</div>').join('');document.getElementById('orderOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeOrderForm(){document.getElementById('orderOverlay').classList.remove('open');document.body.style.overflow='';}
+async function submitOrder(){
+  const name=document.getElementById('fieldName').value.trim(),contact=document.getElementById('fieldContact').value.trim(),address=document.getElementById('fieldAddress').value.trim();
+  if(!name||!contact||!address){alert('Please fill in all fields.');return;}
+  const btn=document.querySelector('.form-submit');btn.textContent='Submitting...';btn.disabled=true;
+  try{await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({orders:cart.map(p=>({timestamp:new Date().toISOString(),name,contact,address,ean:p.ean,asin:p.asin,sku:p.sku,brand:p.brand,category:p.category,title:p.shortTitle||p.title,image:p.image}))})});}catch(e){}
+  document.getElementById('orderFormContent').style.display='none';document.getElementById('successScreen').classList.add('show');
+  btn.textContent='Submit Request 💜';btn.disabled=false;
 }
-
-function addToCartFromModal() {
-  if (!currentProduct) return;
-  addToCart(currentProduct.ean);
-  closeModal();
-}
-
-// ── CART ──────────────────────────────────────────────
-function quickAdd(ean) { addToCart(ean); }
-
-function addToCart(ean) {
-  const p = products.find(x => x.ean === ean);
-  if (!p || !p.inStock || cart.some(c => c.ean === ean)) return;
-  cart.push(p);
-  updateCartUI();
-  renderCatalog(activeFilter === 'all' ? products : products.filter(p => p.category === activeFilter));
-}
-
-function removeFromCart(ean) {
-  cart = cart.filter(c => c.ean !== ean);
-  updateCartUI();
-  renderCatalog(activeFilter === 'all' ? products : products.filter(p => p.category === activeFilter));
-}
-
-function updateCartUI() {
-  const count = cart.length;
-  document.getElementById('cartCount').textContent  = count;
-  document.getElementById('checkoutBtn').disabled   = count === 0;
-  document.getElementById('cartSummary').textContent = count > 0 ? count + ' item' + (count > 1 ? 's' : '') + ' selected' : '';
-
-  const itemsEl = document.getElementById('cartItems');
-  if (count === 0) { itemsEl.innerHTML = '<div class="cart-empty-msg">Your picks will appear here 💜</div>'; return; }
-
-  itemsEl.innerHTML = cart.map(p =>
-    '<div class="cart-item">' +
-    '<div class="cart-item-img">' + (p.image ? '<img src="' + p.image + '" alt="' + (p.shortTitle || p.title) + '" onerror="this.parentElement.innerHTML=\'🌿\'">' : '🌿') + '</div>' +
-    '<div class="cart-item-info">' +
-    '<div class="cart-item-title">' + (p.shortTitle || p.title) + '</div>' +
-    '<div class="cart-item-category">' + p.category + '</div>' +
-    '</div>' +
-    '<button class="cart-item-remove" onclick="removeFromCart(\'' + p.ean + '\')">✕</button>' +
-    '</div>'
-  ).join('');
-}
-
-function openCart() {
-  document.getElementById('cartOverlay').classList.add('open');
-  document.getElementById('cartDrawer').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeCart() {
-  document.getElementById('cartOverlay').classList.remove('open');
-  document.getElementById('cartDrawer').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// ── ORDER FORM ────────────────────────────────────────
-function openOrderForm() {
-  closeCart();
-  document.getElementById('orderSummaryItems').innerHTML =
-    cart.map(p => '<div class="order-summary-item">' + (p.shortTitle || p.title) + '</div>').join('');
-  document.getElementById('orderOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeOrderForm() {
-  document.getElementById('orderOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-async function submitOrder() {
-  const name    = document.getElementById('fieldName').value.trim();
-  const contact = document.getElementById('fieldContact').value.trim();
-  const address = document.getElementById('fieldAddress').value.trim();
-  if (!name || !contact || !address) { alert('Please fill in all fields before submitting.'); return; }
-
-  const submitBtn = document.querySelector('.form-submit');
-  submitBtn.textContent = 'Submitting...';
-  submitBtn.disabled    = true;
-
-  try {
-    const timestamp = new Date().toISOString();
-    const orderId   = 'MP-' + Date.now();
-    const rows      = cart.map(p => ({
-      timestamp, orderId, name, contact, address,
-      ean: p.ean, asin: p.asin, sku: p.sku,
-      brand: p.brand, category: p.category,
-      title: p.shortTitle || p.title, image: p.image,
-    }));
-
-    await fetch(APPS_SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ orders: rows }),
-    });
-
-    document.getElementById('orderFormContent').style.display = 'none';
-    document.getElementById('successScreen').classList.add('show');
-  } catch (err) {
-    submitBtn.textContent = 'Submit Request 💜';
-    submitBtn.disabled    = false;
-    alert('Something went wrong. Please try again.');
-  }
-}
-
-function resetAll() {
-  cart = [];
-  updateCartUI();
-  closeOrderForm();
-  document.getElementById('orderFormContent').style.display = '';
-  document.getElementById('successScreen').classList.remove('show');
-  document.getElementById('fieldName').value    = '';
-  document.getElementById('fieldContact').value = '';
-  document.getElementById('fieldAddress').value = '';
-  renderCatalog(products);
-}
-
-document.addEventListener('DOMContentLoaded', loadCatalog);
+function resetAll(){cart=[];updateCartUI();closeOrderForm();document.getElementById('orderFormContent').style.display='';document.getElementById('successScreen').classList.remove('show');['fieldName','fieldContact','fieldAddress'].forEach(id=>document.getElementById(id).value='');renderCatalog(products);}
+document.addEventListener('DOMContentLoaded',loadCatalog);
 </script>
 </body>
 </html>
